@@ -21,7 +21,6 @@
         .menu-item { background: white; padding: 20px; border-radius: 15px; box-shadow: 5px 5px 0px var(--primary-red); border: 1.5px solid var(--primary-red); cursor: pointer; font-family: 'Dancing Script'; font-size: 1.3rem; }
 
         .scroll-container { width: 100%; max-height: 75vh; overflow-y: auto; padding: 10px 0; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        
         .video-wrapper { width: 90%; max-width: 280px; height: 450px; background: #000; border-radius: 15px; border: 4px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; flex-shrink: 0; }
         video { width: 100%; height: 100%; background: #000; }
 
@@ -30,11 +29,10 @@
 </head>
 <body>
 
-    <!-- 1. LOCK SCREEN (Passcode: 0612) -->
     <div id="lock-screen" class="page active">
         <h2 style="font-family: 'Dancing Script'; font-size: 2.8rem;">Our Private Space</h2>
         <p>Unlock with our anniversary (DDMM)</p>
-        <div id="pass-display" style="font-size: 2.5rem; margin-bottom: 20px; letter-spacing: 8px; font-weight: bold;">____</div>
+        <div id="pass-display" style="font-size: 2.2rem; margin-bottom: 20px; letter-spacing: 8px; font-weight: bold;">____</div>
         <div class="keypad">
             <button class="key" onclick="press('1')">1</button><button class="key" onclick="press('2')">2</button><button class="key" onclick="press('3')">3</button>
             <button class="key" onclick="press('4')">4</button><button class="key" onclick="press('5')">5</button><button class="key" onclick="press('6')">6</button>
@@ -43,7 +41,6 @@
         </div>
     </div>
 
-    <!-- 2. HOME -->
     <div id="page-home" class="page">
         <h1 style="font-family: 'Dancing Script'; color: var(--primary-red); font-size: 3rem;">Hi Meenal!</h1>
         <div class="menu-grid">
@@ -55,41 +52,16 @@
         </div>
     </div>
 
-    <!-- 3. STATS (Updated for May 6, 2026) -->
     <div id="page-stats" class="page">
-        <h2 style="font-family: 'Dancing Script';">882 Days of Love</h2>
-        <div style="font-size: 1.2rem; line-height: 2.5; background: white; padding: 20px; border-radius: 20px;">
-            🗓️ <b>882</b> Total Days Together <br>
+        <h2 style="font-family: 'Dancing Script';">882 Days Together</h2>
+        <div style="font-size: 1.1rem; line-height: 2.5; background: white; padding: 20px; border-radius: 20px;">
+            🗓️ <b>882</b> Total Days <br>
             ⏳ <b>21,168</b> Hours Shared <br>
-            💎 <b>1,270,080</b> Minutes of Us
+            💎 <b>1,270,080</b> Minutes of Love
         </div>
         <button class="btn-back" onclick="showPage('page-home')">Go Back</button>
     </div>
 
-    <!-- 4. TIMELINE -->
-    <div id="page-timeline" class="page">
-        <h2 style="font-family: 'Dancing Script';">Our Journey</h2>
-        <div style="text-align: left; border-left: 2px solid var(--primary-red); padding-left: 20px;">
-            <p><b>06 Dec 2023:</b> The Day it Began ❤️</p>
-            <p><b>06 Dec 2025:</b> 2nd Anniversary! 🥂</p>
-            <p><b>06 May 2026:</b> Today (882 Days) ♾️</p>
-        </div>
-        <button class="btn-back" onclick="showPage('page-home')">Go Back</button>
-    </div>
-
-    <!-- 5. MEMORIES -->
-    <div id="page-memories" class="page">
-        <h2 style="font-family: 'Dancing Script';">Little Moments</h2>
-        <div class="scroll-container">
-            <div class="polaroid"><img src="https://i.postimg.cc/FFqMBPGM/first-date-jpeg.jpg" style="width:100%"><p>First Date</p></div>
-            <div class="polaroid"><img src="https://i.postimg.cc/xdpQT9yQ/image-4080x3780.jpg" style="width:100%"><p>My Fav Pic</p></div>
-            <div class="polaroid"><img src="https://i.postimg.cc/HkGCVSyw/first-kiss.jpg" style="width:100%"><p>First Kiss</p></div>
-            <div class="polaroid"><img src="https://i.postimg.cc/qqkNVJkd/first-gift.jpg" style="width:100%"><p>First Gift</p></div>
-        </div>
-        <button class="btn-back" onclick="showPage('page-home')">Go Back</button>
-    </div>
-
-    <!-- 6. VIDEO REELS (COMBINED) -->
     <div id="page-reels" class="page">
         <h2 style="font-family: 'Dancing Script';">Our Reels</h2>
         <div class="scroll-container">
@@ -107,25 +79,14 @@
         <button class="btn-back" onclick="showPage('page-home')">Go Back</button>
     </div>
 
-    <!-- 7. LETTER -->
-    <div id="page-letter" class="page">
-        <div style="background: white; padding: 30px; border-radius: 10px; max-width: 350px; border-left: 5px solid var(--primary-red); text-align: left;">
-            <p style="font-family: 'Caveat'; font-size: 1.5rem;">
-                Meenal, <br><br>
-                Happy Anniversary! These 882 days with you have been the best of my life. I love you more than words can say.
-            </p>
-        </div>
-        <button class="btn-back" onclick="showPage('page-home')">Go Back</button>
-    </div>
-
     <script>
         let input = "";
-        const code = "0612";
+        const code = "0612"; // 06 Dec
         function press(num) {
             if (input.length < 4) { input += num; document.getElementById('pass-display').innerText = input + "_".repeat(4 - input.length); }
             if (input.length === 4) {
                 if (input === code) { showPage('page-home'); }
-                else { alert("Incorrect Date!"); input = ""; document.getElementById('pass-display').innerText = "____"; }
+                else { alert("Try our anniversary date!"); input = ""; document.getElementById('pass-display').innerText = "____"; }
             }
         }
         function showPage(pageId) {
