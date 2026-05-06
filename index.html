@@ -9,20 +9,16 @@
         :root { --red: #9B1B1B; --cream: #FFF9F5; }
         body, html { margin: 0; padding: 0; background: var(--cream); font-family: 'Poppins', sans-serif; height: 100%; width: 100%; overflow: hidden; }
         
-        /* Each section is hidden by default */
         .section { display: none; height: 100vh; width: 100%; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; box-sizing: border-box; }
         .visible { display: flex !important; }
 
-        /* Lock Screen Style */
         #lock { background: var(--red); color: white; }
         .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; width: 240px; }
         .key { padding: 20px; border: 1px solid white; border-radius: 50%; background: none; color: white; font-size: 1.2rem; cursor: pointer; }
         
-        /* Menu Buttons */
         .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 320px; }
         .btn { background: white; padding: 20px; border-radius: 10px; border: 2px solid var(--red); font-family: 'Dancing Script'; font-size: 1.2rem; cursor: pointer; }
 
-        /* Scrollable Area for Videos/Photos */
         .scroll { width: 100%; max-height: 70vh; overflow-y: auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
         .video-card { width: 260px; height: 440px; background: #000; border-radius: 12px; border: 4px solid white; flex-shrink: 0; }
         
@@ -31,10 +27,10 @@
 </head>
 <body>
 
-    <!-- 1. PASSCODE SECTION (0612) -->
+    <!-- 1. LOCK SCREEN (0612) -->
     <div id="lock" class="section visible">
         <h2 style="font-family: 'Dancing Script'; font-size: 2.5rem;">Enter Our Date</h2>
-        <p>Unlock with 06 Dec (DDMM)</p>
+        <p>Unlock with our anniversary (DDMM)</p>
         <div id="display" style="font-size: 2rem; margin: 20px 0;">____</div>
         <div class="keypad">
             <button class="key" onclick="tap('1')">1</button><button class="key" onclick="tap('2')">2</button><button class="key" onclick="tap('3')">3</button>
@@ -88,6 +84,12 @@
             <div style="background:white; padding:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
                 <img src="https://i.postimg.cc/xdpQT9yQ/image-4080x3780.jpg" width="200"><p style="font-family:'Caveat';">Favorite Pic</p>
             </div>
+            <div style="background:white; padding:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+                <img src="https://i.postimg.cc/HkGCVSyw/first-kiss.jpg" width="200"><p style="font-family:'Caveat';">First Kiss</p>
+            </div>
+            <div style="background:white; padding:10px; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
+                <img src="https://i.postimg.cc/qqkNVJkd/first-gift.jpg" width="200"><p style="font-family:'Caveat';">First Gift</p>
+            </div>
         </div>
         <button class="back" onclick="go('home')">Go Back</button>
     </div>
@@ -112,10 +114,10 @@
 
     <!-- 7. LETTER -->
     <div id="note" class="section">
-        <div style="background: white; padding: 30px; border-radius: 10px; border-left: 5px solid var(--red); max-width: 300px;">
+        <div style="background: white; padding: 30px; border-radius: 10px; border-left: 5px solid var(--red); max-width: 300px; text-align: left;">
             <p style="font-family: 'Caveat'; font-size: 1.4rem;">
                 Meenal, <br><br>
-                Every day of these 882 days has been a blessing. I love you more than words can say.
+                Happy Anniversary! Thank you for making these 882 days the best of my life. I love you more than words can say.
             </p>
         </div>
         <button class="back" onclick="go('home')">Go Back</button>
@@ -135,9 +137,7 @@
         }
 
         function go(id) {
-            // Hide all sections
             document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
-            // Show the target section
             document.getElementById(id).classList.add('visible');
         }
     </script>
