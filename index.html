@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06.12.23 | Forever</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400&family=Caveat:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #9B1B1B;
+            --cream: #FFF9F5;
+            --heart: #FF4D6D;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--cream);
+            font-family: 'Poppins', sans-serif;
+            height: 100vh; overflow: hidden;
+        }
+
+        /* --- NAVIGATION --- */
+        .page {
+            position: absolute; width: 100%; height: 100%;
+            top: 0; left: 0; display: none;
+            flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 20px; box-sizing: border-box;
+            animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .active { display: flex; }
+
+        /* --- LOCK SCREEN --- */
+        #lock-screen { background: var(--primary-red); z-index: 1000; color: white; }
+        .keypad { display: grid; grid-template-columns: repeat(3, 75px); gap: 15px; margin-top: 20px; }
+        .key {
+            width: 75px; height: 75px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.4);
+            background: transparent; color: white; font-size: 1.5rem; cursor: pointer;
+        }
+        .key:active { background: white; color: var(--primary-red); }
+
+        /* --- MENU --- */
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; max-width: 350px; }
+        .menu-item {
+            background: white; padding: 20px; border-radius: 15px;
+            box-shadow: 5px 5px 0px var(--primary-red); border: 1.5px solid var(--primary-red);
+            cursor: pointer; font-family: 'Dancing Script'; font-size: 1.3rem; transition: 0.2s;
+        }
+
+        /* --- PHOTO & VIDEO FEED --- */
+        .scroll-container { 
+            width: 100%; max-height: 75vh; overflow-y: auto; 
+            padding: 10px 0; display: flex; flex-direction: column; align-items: center; gap: 30px;
+        }
+        
+        .polaroid { background: white; padding: 8px 8px 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 150px; }
+        .polaroid img { width: 100%; height: 130px; object-fit: cover; }
+        .polaroid p { font-family: 'Caveat'; margin: 8px 0 0; font-size: 1.1rem; }
+
+        .video-container {
+            width: 90%; max-width: 280px; height: 420px; 
+            background: #000; border-radius: 15px; border: 4px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); overflow: hidden; flex-shrink: 0;
+        }
+
+        .btn-back { margin-top: 20px; color: #888; background: none; border: none; text-decoration: underline; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. LOCK SCREEN (Passcode: 0612) -->
+    <div id="lock-screen" class="page active">
+        <h2 style="font-family: 'Dancing Script'; font-size: 2.8rem;">Our Private Space</h2>
+        <p>Unlock with our anniversary date (DDMM)</p>
+        <div id="pass-display" style="font-size: 2.5rem; margin-bottom: 20px; letter-spacing: 8px; font-weight: bold;">____</div>
+        <div class="keypad">
+            <button class="key" onclick="press('1')">1</button>
+            <button class="key" onclick="press('2')">2</button>
+            <button class="key" onclick="press('3')">3</button>
+            <button class="key" onclick="press('4')">4</button>
+            <button class="key" onclick="press('5')">5</button>
+            <button class="key" onclick="press('6')">6</button>
+            <button class="key" onclick="press('7')">7</button>
+            <button class="key" onclick="press('8')">8</button>
+            <button class="key" onclick="press('9')">9</button>
+            <span></span><button class="key" onclick="press('0')">0</button>
+        </div>
+    </div>
+
+    <!-- 2. HOME DASHBOARD -->
+    <div id="page-home" class="page">
+        <h1 style="font-family: 'Dancing Script'; color: var(--primary-red); font-size: 3rem;">Hi Meenal!</h1>
+        <div class="menu-grid">
+            <div class="menu-item" onclick="showPage('page-stats')">📊 Our Stats</div>
+            <div class="menu-item" onclick="showPage('page-timeline')">📅 Timeline</div>
+            <div class="menu-item" onclick="showPage('page-memories')">📸 Memories</div>
+            <div class="menu-item" onclick="showPage('page-reels')">🎬 Video Reels</div>
+            <div class="menu-item" onclick="showPage('page-letter')" style="grid-column: span 2;">✉️ My Note</div>
+        </div>
+    </div>
+
+    <!-- 3. STATS PAGE -->
+    <div id="page-stats" class="page">
+        <h2 style="font-family: 'Dancing Script';">882 Days Since 06.12.23</h2>
+        <div style="font-size: 1.2rem; line-height: 2.5; background: white; padding: 20px; border-radius: 20px;">
+            🗓️ <b>882</b> Total Days Together<br>
+            ⏳ <b>21,168</b> Hours Shared<br>
+            💎 <b>1,270,080</b> Minutes of Love
+        </div>
+        <button class="btn-back" onclick="showPage('page-home')">Go Back</button>
+    </div>
+
+    <!-- 4. TIMELINE PAGE -->
+    <div id="page-timeline" class="page">
+        <h2 style="font-family: 'Dancing Script';">The Journey</h2>
+        <div style="text-align: left; border-left: 2px solid var(--primary-red); padding-left: 20px;">
+            <p><b>06 Dec 2023:</b> The Day it Began ❤️</p>
+            <p><b>06 Dec 2025:</b> 2nd Anniversary! 🥂</p>
+            <p><b>06 May 2026:</b> Today (882 Days) ♾️</p>
+        </div>
+        <button class="btn-back" onclick="showPage('page-home')">Go Back</button>
+    </div>
+
+    <!-- 5. MEMORIES PAGE -->
+    <div id="page-memories" class="page">
+        <h2 style="font-family: 'Dancing Script';">Little Moments</h2>
+        <div class="scroll-container">
+            <div class="polaroid"><img src="https://i.postimg.cc/FFqMBPGM/first-date-jpeg.jpg"><p>First Date</p></div>
+            <div class="polaroid"><img src="https://i.postimg.cc/xdpQT9yQ/image-4080x3780.jpg"><p>My Fav Pic</p></div>
+            <div class="polaroid"><img src="https://i.postimg.cc/HkGCVSyw/first-kiss.jpg"><p>First Kiss</p></div>
+            <div class="polaroid"><img src="https://i.postimg.cc/qqkNVJkd/first-gift.jpg"><p>First Gift</p></div>
+        </div>
+        <button class="btn-back" onclick="showPage('page-home')">Go Back</button>
+    </div>
+
+    <!-- 6. COMBINED VIDEO REELS PAGE -->
+    <div id="page-reels" class="page">
+        <h2 style="font-family: 'Dancing Script';">Our Memories</h2>
+        <div class="scroll-container">
+            <!-- Reel 1 -->
+            <div class="video-container">
+                <video width="100%" height="100%" controls playsinline muted loop>
+                    <source src="https://www.dropbox.com/scl/fi/3vufbk9ikkc1t6wreyeqm/reel.mp4.mp4?rlkey=eocodry8xbve7pfb4797fmem4&st=6zwtd2n0&dl=1" type="video/mp4">
+                </video>
+            </div>
+            <!-- Reel 2 -->
+            <div class="video-container">
+                <video width="100%" height="100%" controls playsinline muted loop>
+                    <source src="https://www.dropbox.com/scl/fi/xq2hr273d9jwbo742wdk5/WhatsApp-Video-2026-05-06-at-5.38.21-PM.mp4?rlkey=2xfnor41jbam5at26g8zsfwbn&st=bz6nxy7v&dl=1" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <button class="btn-back" onclick="showPage('page-home')">Go Back</button>
+    </div>
+
+    <!-- 7. LETTER PAGE -->
+    <div id="page-letter" class="page">
+        <div style="background: white; padding: 30px; border-radius: 10px; max-width: 350px; border-left: 5px solid var(--primary-red); text-align: left;">
+            <p style="font-family: 'Caveat'; font-size: 1.5rem;">
+                Meenal,<br><br>
+                Happy Anniversary to my beautiful girl. Thank you for your love and for making 'us' the best thing in my life. I love you more than words can put on this page.
+            </p>
+        </div>
+        <button class="btn-back" onclick="showPage('page-home')">Go Back</button>
+    </div>
+
+    <script>
+        let input = "";
+        const code = "0612"; 
+
+        function press(num) {
+            if (input.length < 4) {
+                input += num;
+                document.getElementById('pass-display').innerText = input + "_".repeat(4 - input.length);
+            }
+            if (input.length === 4) {
+                if (input === code) {
+                    showPage('page-home');
+                } else {
+                    alert("Try our anniversary date (DDMM)!");
+                    input = "";
+                    document.getElementById('pass-display').innerText = "____";
+                }
+            }
+        }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
